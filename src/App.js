@@ -1,11 +1,11 @@
 import './App.css';
-import {Sneaker} from "./component/Sneaker/Sneaker";
 import {Header} from "./component/Header/Header";
 import {Cart} from "./component/Cart/Cart";
 import {Search} from "./component/Search/Search";
 import {Component, useEffect, useState} from "react";
 import {Route,Routes} from "react-router-dom"
 import axios from "axios";
+import {Home} from "./pages/Home";
 
 
 function App() {
@@ -68,27 +68,15 @@ function App() {
 
 
         </Routes>
-        <div>
-            <div className='content p-40'>
-                <Search searchValue={searchValue}
-                        onChangeValue={onChangeSearchInput}
-                />
-                <div className="d-flex flex-wrap">
-                    {items
-                        .filter((item=>item.title.toLowerCase().includes(searchValue)))
-                        .map((s,index)=>(
-                        <Sneaker
-                            key={index}
-                            id={s.id}
-                            imageUrl={s.imageUrl}
-                            names={s.title} price={s.price}
-                            onClickAdd={onClickAddSnInCart}
-                            onClickFavorite={onFavorite}
-                    />))}
-
-                </div>
-            </div>
-        </div>
+        <Home
+            items={items}
+            searchValue={searchValue}
+            setSerchValue={setSearchValue}
+            favoriteSneaker={favoriteSneaker}
+            onChangeSearchInput={onChangeSearchInput}
+            onClickAddSnInCart={onClickAddSnInCart}
+            onFavorite={onFavorite}
+        />
     </div>
   );
 }
