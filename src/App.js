@@ -7,6 +7,7 @@ import {Route,Routes} from "react-router-dom"
 import axios from "axios";
 import {Home} from "./pages/Home";
 import {Favorites} from "./pages/Favorites";
+import {User} from "./pages/User";
 
 
 function App() {
@@ -79,8 +80,11 @@ function App() {
                        items={favoriteSneaker}
                    />}>
             </Route>
-
-
+            <Route path="/user"
+                   element={<User
+                       items={"one"}
+                   />}>
+            </Route>
         </Routes>
 
     </div>

@@ -2,7 +2,6 @@ import logo from "../../img/logo.png";
 import car from "../../img/car.svg";
 import like from "../../img/like.svg";
 import user from "../../img/user.svg";
-import styles from "./Header.module.scss";
 import {Link} from "react-router-dom";
 
 
@@ -36,7 +35,6 @@ export function Header(props){
                                 <img width={18} height={18} src={user} alt='user'/>
                             </li>
                         </Link>
-
                     </ul>
                 </div>
             </header>

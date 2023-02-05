@@ -1,15 +1,13 @@
 import {Search} from "../component/Search/Search";
 import {Sneaker} from "../component/Sneaker/Sneaker";
 
-
-
-export function Favorites(props){
+export function User(props){
     return(
         <>
             <div>
                 <div className='content p-40'>
                     <Search
-                        serchTitle={"My favorites"}
+                        serchTitle={"My order"}
                         searchValue={props.searchValue}
                         onChangeValue={props.onChangeSearchInput}
                     />
