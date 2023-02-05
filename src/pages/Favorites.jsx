@@ -13,9 +13,8 @@ export function Favorites(props){
                         searchValue={props.searchValue}
                         onChangeValue={props.onChangeSearchInput}
                     />
-                    {props.items?
+                    {props.items.length>0?
                         <div className="d-flex flex-wrap">
-
                             {props.items
                                 //.filter((item=>item.title.toLowerCase().includes(props.searchValue)))
                                 .map((s,index)=>(

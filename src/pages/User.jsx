@@ -11,7 +11,7 @@ export function User(props){
                         searchValue={props.searchValue}
                         onChangeValue={props.onChangeSearchInput}
                     />
-                    {props.items?
+                    {props.items>0?
                         <div className="d-flex flex-wrap">
 
                             {props.items
@@ -28,7 +28,7 @@ export function User(props){
                                     />))}
 
                         </div>
-                        :"My favorites empty"}
+                        :"My order empty"}
 
                 </div>
             </div>
