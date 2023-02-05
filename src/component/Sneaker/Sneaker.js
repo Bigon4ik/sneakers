@@ -11,7 +11,7 @@ import sneaker from "../../img/sneakers/image1.jpg"
 export function Sneaker(props){
 
     const [isAdded,setIsAdded] = useState(false)
-    const [isFavorite,setIsFavorite] = useState(false)
+    const [isFavorite,setIsFavorite] = useState(props.favotited)
 
     const onClickPlus =()=>{
         setIsAdded(!isAdded)

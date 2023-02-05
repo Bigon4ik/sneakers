@@ -8,8 +8,10 @@ export function Home(props){
         <>
             <div>
                 <div className='content p-40'>
-                    <Search searchValue={props.searchValue}
-                            onChangeValue={props.onChangeSearchInput}
+                    <Search
+                        serchTitle={"All sneakers"}
+                        searchValue={props.searchValue}
+                        onChangeValue={props.onChangeSearchInput}
                     />
                     <div className="d-flex flex-wrap">
                         {props.items
@@ -20,6 +22,7 @@ export function Home(props){
                                     id={s.id}
                                     imageUrl={s.imageUrl}
                                     names={s.title} price={s.price}
+                                    favotited={false}
                                     onClickAdd={props.onClickAddSnInCart}
                                     onClickFavorite={props.onFavorite}
                                 />))}

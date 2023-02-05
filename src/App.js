@@ -6,6 +6,7 @@ import {Component, useEffect, useState} from "react";
 import {Route,Routes} from "react-router-dom"
 import axios from "axios";
 import {Home} from "./pages/Home";
+import {Favorites} from "./pages/Favorites";
 
 
 function App() {
@@ -22,8 +23,8 @@ function App() {
     useEffect(()=>{
         axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/items')
             .then((res)=>{
+
                 setItems(res.data)
-                console.log(res.data)
             })
         axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/cart')
             .then((res)=>{
@@ -32,11 +33,11 @@ function App() {
     },[])
 
     const onClickAddSnInCart=(id,title,price,imageUrl,)=>{
-        setFavoriteSneaker([...cartItems,{id:id,name:title,price:price,imageUrl:imageUrl}])
+        setCartItem([...cartItems,{id:id,name:title,price:price,imageUrl:imageUrl}])
         axios.post('https://63d842d5baa0f79e09a682ec.mockapi.io/cart',{id:id,name:title,price:price,imageUrl:imageUrl})
     }
     const onFavorite=(id,title,price,imageUrl,)=>{
-        setCartItem([...cartItems,{id:id,name:title,price:price,imageUrl:imageUrl}])
+        setFavoriteSneaker([...favoriteSneaker,{id,title,price,imageUrl}])
         //axios.post('https://63d842d5baa0f79e09a682ec.mockapi.io/cart',{id:id,name:title,price:price,imageUrl:imageUrl})
     }
 
@@ -61,22 +62,27 @@ function App() {
             changeCart={()=>{setCart(true)}}
         />
         <Routes>
-            <Route path="/" element={''}>
+            <Route path="/" exact
+                   element={
+                       <Home
+                           items={items}
+                           searchValue={searchValue}
+                           setSerchValue={setSearchValue}
+                           onChangeSearchInput={onChangeSearchInput}
+                           onClickAddSnInCart={onClickAddSnInCart}
+                           onFavorite={onFavorite}
+                        />
+                   }>
             </Route>
-            <Route path="/favorites" element={"asdsfsa"}>
+            <Route path="/favorites"
+                   element={<Favorites
+                       items={favoriteSneaker}
+                   />}>
             </Route>
 
 
         </Routes>
-        <Home
-            items={items}
-            searchValue={searchValue}
-            setSerchValue={setSearchValue}
-            favoriteSneaker={favoriteSneaker}
-            onChangeSearchInput={onChangeSearchInput}
-            onClickAddSnInCart={onClickAddSnInCart}
-            onFavorite={onFavorite}
-        />
+
     </div>
   );
 }
