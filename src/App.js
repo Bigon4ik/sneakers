@@ -11,8 +11,39 @@ import {User} from "./pages/User";
 
 function App() {
 
-
+const fakeArray=[
+    {
+    "title":"Мужские Кроссовки Nike Blazer Mid Suede",
+    "price":250,
+    "imageUrl":"{sneaker1}"
+    },
+    {
+        "title":"Мужские Кроссовки Nike Air Max 270",
+        "price":290,
+        "imageUrl":"{sneaker2}"
+    },
+    {
+        "title":"Мужские Кроссовки Nike Blazer Mid Suede",
+        "price":310,
+        "imageUrl":"{sneaker3}"
+    },
+    {
+        "title":"Кроссовки Puma X Aka Boku Future Rider",
+        "price":255,
+        "imageUrl":"{sneaker4}"
+    },
+    {
+        "title":"Мужские Кроссовки Under Armour Curry 8",
+        "price":235,
+        "imageUrl":"{sneaker5}"
+    },
+    {
+        "title":"Мужские Кроссовки Nike LeBron XVIII",
+        "price":290,
+        "imageUrl":"{sneaker6}"
+    }]
     const [cart,setCart]=useState(false)
+    const [isLoading,setIsLoading]=useState(true)
     const [cartItems,setCartItem]=useState([])
     const [favoriteSneaker,setFavoriteSneaker]=useState([])
 
@@ -20,10 +51,13 @@ function App() {
     const [searchValue,setSearchValue]=useState("")
 
 
+
     useEffect(()=>{
         async function fetchData() {
             const cartResponse= await axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/cart')
             const itemsResponse= await axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/items')
+
+            setIsLoading(false)
 
             setItems(itemsResponse.data)
             setCartItem(cartResponse.data)
@@ -83,6 +117,8 @@ function App() {
                            onClickAddSnInCart={onClickAddSnInCart}
                            onFavorite={onFavorite}
                            cartItems={cartItems}
+                           isLoading={isLoading}
+                           fakeArray={fakeArray}
                         />
                    }>
             </Route>
