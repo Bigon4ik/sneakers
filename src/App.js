@@ -21,20 +21,31 @@ function App() {
 
 
     useEffect(()=>{
-        axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/items')
-            .then((res)=>{
+        async function fetchData() {
+            const cartResponse= await axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/cart')
+            const itemsResponse= await axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/items')
 
-                setItems(res.data)
-            })
-        axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/cart')
-            .then((res)=>{
-                setCartItem(res.data)
-            })
+            setItems(itemsResponse.data)
+            setCartItem(cartResponse.data)
+        }
+        fetchData()
     },[])
 
     const onClickAddSnInCart=(id,title,price,imageUrl,)=>{
-        setCartItem([...cartItems,{id:id,name:title,price:price,imageUrl:imageUrl}])
-        axios.post('https://63d842d5baa0f79e09a682ec.mockapi.io/cart',{id:id,name:title,price:price,imageUrl:imageUrl})
+        try{
+            if(cartItems.find((item)=>Number(item.id) === Number(id))){
+                setCartItem(prev=>prev.filter(item=>Number(item.id) !== Number(id)))
+                axios.delete(`https://63d842d5baa0f79e09a682ec.mockapi.io/cart/${id}`)
+
+            }else {
+                axios.post('https://63d842d5baa0f79e09a682ec.mockapi.io/cart',{id:id,name:title,price:price,imageUrl:imageUrl})
+                setCartItem([...cartItems,{id:id,name:title,price:price,imageUrl:imageUrl}])
+            }
+        }catch (error){
+            console.log(error)
+            console.log("You have a problem with addInCart")
+        }
+
     }
     const onFavorite=(id,title,price,imageUrl,)=>{
         setFavoriteSneaker([...favoriteSneaker,{id,title,price,imageUrl}])
@@ -71,6 +82,7 @@ function App() {
                            onChangeSearchInput={onChangeSearchInput}
                            onClickAddSnInCart={onClickAddSnInCart}
                            onFavorite={onFavorite}
+                           cartItems={cartItems}
                         />
                    }>
             </Route>

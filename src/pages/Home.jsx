@@ -23,6 +23,7 @@ export function Home(props){
                                     favotited={false}
                                     onClickAdd={props.onClickAddSnInCart}
                                     onClickFavorite={props.onFavorite}
+                                    added={props.cartItems.some(obj=>Number(obj.id) === Number(s.id))}
                                 />))}
 
                     </div>

@@ -30,7 +30,10 @@ export function Cart(props){
                                     <p className='mb-5'>{i.name}</p>
                                     <b>{i.price}p</b>
                                 </div>
-                                <img onClick={()=>{props.onRemoveItem(i.id)}} className={styles.removeBtn} src={btnRemove} alt="Remove"/>
+                                <img onClick={()=>{props.onRemoveItem(i.id)}}
+                                     className={styles.removeBtn}
+                                     src={btnRemove} alt="Remove"
+                                />
                             </div>
                         ))}
                     </div>

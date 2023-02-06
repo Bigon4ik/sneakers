@@ -9,12 +9,12 @@ import {useState} from "react";
 
 export function Sneaker(props){
 
-    const [isAdded,setIsAdded] = useState(false)
+    const [isAdded,setIsAdded] = useState(props.added)
     const [isFavorite,setIsFavorite] = useState(props.favotited)
 
     const onClickPlus =()=>{
-        setIsAdded(!isAdded)
         props.onClickAdd(props.id,props.names,props.price,props.imageUrl)
+        setIsAdded(!isAdded)
     }
     const onClickFavorite =()=>{
         setIsFavorite(!isFavorite)
