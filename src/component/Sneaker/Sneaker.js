@@ -4,7 +4,6 @@ import btnchoise from "../../img/btn-choise.svg";
 import btnunchoise from "../../img/btn-unchoise.svg";
 import styles from "./Sneacer.module.scss"
 import {useState} from "react";
-import sneaker from "../../img/sneakers/image1.jpg"
 
 
 
@@ -33,7 +32,6 @@ export function Sneaker(props){
             <div className='d-flex justify-between align-center'>
                 <div className='d-flex flex-column'>
                     <span>Price:</span>
-                    <div className={`${styles.fike} ${styles.focus}`} ></div>
                     <b>{props.price} BYN</b>
                 </div>
                 <div >

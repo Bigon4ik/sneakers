@@ -1,8 +1,6 @@
 import {Search} from "../component/Search/Search";
 import {Sneaker} from "../component/Sneaker/Sneaker";
 
-
-
 export function Home(props){
     return(
         <>

@@ -1,8 +1,7 @@
 import './App.css';
 import {Header} from "./component/Header/Header";
 import {Cart} from "./component/Cart/Cart";
-import {Search} from "./component/Search/Search";
-import {Component, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Route,Routes} from "react-router-dom"
 import axios from "axios";
 import {Home} from "./pages/Home";
@@ -76,14 +75,18 @@ function App() {
                    }>
             </Route>
             <Route path="/favorites"
-                   element={<Favorites
+                   element={
+                       <Favorites
                        items={favoriteSneaker}
-                   />}>
+                        />
+                   }>
             </Route>
             <Route path="/user"
-                   element={<User
+                   element={
+                       <User
                        items={"one"}
-                   />}>
+                       />
+                   }>
             </Route>
         </Routes>
 
