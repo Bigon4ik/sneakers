@@ -24,6 +24,7 @@ export function Home(props){
                                     onClickAdd={props.onClickAddSnInCart}
                                     onClickFavorite={props.onFavorite}
                                     added={props.cartItems.some(obj=>Number(obj.id) === Number(s.id))}
+                                    isLoading={false}
                                 />))}
 
                     </div>
