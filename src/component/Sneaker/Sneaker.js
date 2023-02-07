@@ -11,18 +11,18 @@ import {AppContext} from "../../App";
 
 export function Sneaker(props){
 
-    const {isItemAdded} = useContext(AppContext)
+    const {isItemAdded,onClickAddSnInCart,onFavorite} = useContext(AppContext)
 
     //const [isAdded,setIsAdded] = useState(isItemAdded)
     const [isFavorite,setIsFavorite] = useState(props.favotited)
 
     const onClickPlus =()=>{
-        props.onClickAdd(props.id,props.names,props.price,props.imageUrl)
+       onClickAddSnInCart(props.id,props.names,props.price,props.imageUrl)
         //setIsAdded(!isAdded)
     }
     const onClickFavorite =()=>{
         setIsFavorite(!isFavorite)
-        props.onClickFavorite(props.id,props.names,props.price,props.imageUrl)
+        onFavorite(props.id,props.names,props.price,props.imageUrl)
     }
 
 

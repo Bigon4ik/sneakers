@@ -14,9 +14,7 @@ export function Favorites(props){
         <>
             <div>
                 <div className='content p-40'>
-                    <Search
-                        serchTitle={"My favorites"}
-                    />
+                    <Search serchTitle={"My favorites"}/>
                     {favoriteSneaker.length>0?
                         <div className="d-flex flex-wrap">
                             {favoriteSneaker

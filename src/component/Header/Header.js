@@ -3,10 +3,12 @@ import car from "../../img/car.svg";
 import like from "../../img/like.svg";
 import user from "../../img/user.svg";
 import {Link} from "react-router-dom";
+import {useContext} from "react";
+import {AppContext} from "../../App";
 
 
-export function Header(props){
-
+export function Header(){
+    const {setCart} = useContext(AppContext)
     return(
         <>
             <header className='d-flex justify-between align-center p-40'>
@@ -21,7 +23,7 @@ export function Header(props){
                     </Link>
                 <div>
                     <ul className='d-flex'>
-                        <li className='mr-30 cu-p' onClick={props.changeCart}>
+                        <li className='mr-30 cu-p' onClick={()=>{setCart(true)}}>
                             <img  width={18} height={18} src={car} alt='cart'/>
                             <span>{0} p</span>
                         </li>

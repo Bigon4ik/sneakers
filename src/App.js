@@ -113,31 +113,29 @@ const fakeArray=[
     return cartItems.some(obj=>Number(obj.id) === Number(id))
     }
   return (
-<AppContext.Provider value={{cartItems,favoriteSneaker,items,isItemAdded}}>
+<AppContext.Provider value={{
+    cartItems,
+    favoriteSneaker,
+    items,
+    isItemAdded,
+    setCart,
+    onFavorite,
+    onClickAddSnInCart,
+    onChangeSearchInput,
+    setSearchValue,
+    searchValue}}>
     <div className='wrapper clear'>
-        {cart && <Cart items={cartItems}
-                       cart={cart}
-                       onRemoveItem={onRemoveItem}
-                       changeCart={()=>{setCart(false)}}
-                 />
-        }
-        <Header
-            changeCart={()=>{setCart(true)}}
-        />
+        {cart && <Cart onRemoveItem={onRemoveItem}/>}
+        <Header/>
         <Routes>
             <Route path="/" exact
                    element={
                        <Home
-                           items={items}
-                           searchValue={searchValue}
                            setSerchValue={setSearchValue}
                            onChangeSearchInput={onChangeSearchInput}
-                           onClickAddSnInCart={onClickAddSnInCart}
-                           onFavorite={onFavorite}
-                           cartItems={cartItems}
                            isLoading={isLoading}
                            fakeArray={fakeArray}
-                           isItemAdded={isItemAdded}
+                           //isItemAdded={isItemAdded}
                         />
                    }>
             </Route>

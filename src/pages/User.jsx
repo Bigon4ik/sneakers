@@ -6,11 +6,7 @@ export function User(props){
         <>
             <div>
                 <div className='content p-40'>
-                    <Search
-                        serchTitle={"My order"}
-                        searchValue={props.searchValue}
-                        onChangeValue={props.onChangeSearchInput}
-                    />
+                    <Search serchTitle={"My order"}/>
                     {props.items>0?
                         <div className="d-flex flex-wrap">
 
@@ -23,8 +19,6 @@ export function User(props){
                                         favotited={true}
                                         imageUrl={s.imageUrl}
                                         names={s.title} price={s.price}
-                                        //onClickAdd={props.onClickAddSnInCart}
-                                        //onClickFavorite={props.onFavorite}
                                     />))}
 
                         </div>

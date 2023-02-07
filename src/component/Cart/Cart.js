@@ -1,21 +1,24 @@
 import btnRemove from "../../img/btn-remove.svg";
 import styles from "./Cart.module.scss";
 import {Info} from "../Info/Info";
+import {useContext} from "react";
+import {AppContext} from "../../App";
 
 
 
 export function Cart(props){
+    const {cartItems,setCart}= useContext(AppContext)
     return(
         <>
             <div className={styles.overlay}>
                 <div className={styles.drawer}>
                     <h2 className='d-flex justify-between mb-30'>Cart
-                        <img className='removeBtn cu-p' src={btnRemove} alt="Remove" onClick={props.changeCart}/>
+                        <img className='removeBtn cu-p' src={btnRemove} alt="Remove" onClick={()=>setCart(false)}/>
                     </h2>
                     <div className={styles.cartItems}>
-                        {props.items.length ===0
+                        {cartItems.length ===0
                             ? <Info title={"Cart empty"} description={"Add some sneaker"}/>
-                            : props.items.map((i,index)=>(
+                            : cartItems.map((i,index)=>(
                             <div key={index} className="cartItem d-flex align-center mb-20">
                                 <img
                                     className='mr-20'
