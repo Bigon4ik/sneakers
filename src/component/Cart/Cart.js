@@ -1,7 +1,7 @@
 import btnRemove from "../../img/btn-remove.svg";
 import styles from "./Cart.module.scss";
-import React from "react";
 import {Info} from "../Info/Info";
+
 
 
 export function Cart(props){
@@ -13,15 +13,8 @@ export function Cart(props){
                         <img className='removeBtn cu-p' src={btnRemove} alt="Remove" onClick={props.changeCart}/>
                     </h2>
                     <div className={styles.cartItems}>
-                        {props.items.length ===0 ?
-                            <div  className="cartEmpty d-flex align-center justify-center flex-column flex">
-                                <img className="mb-20" width={120} height={120} src="" alt=""/>
-                                <h2>Cart Empty</h2>
-                                <p> Add some sneakers for order</p>
-                                <button className="greenButton">
-                                    <img src="" alt=""/>Return back
-                                </button>
-                            </div>
+                        {props.items.length ===0
+                            ? <Info title={"Cart empty"} description={"Add some sneaker"}/>
                             : props.items.map((i,index)=>(
                             <div key={index} className="cartItem d-flex align-center mb-20">
                                 <img
@@ -40,7 +33,23 @@ export function Cart(props){
                         ))}
                     </div>
                     <div className={styles.cartTotalBlock}>
-                        <Info/>
+                        <ul>
+                            <li className='justify-between'>
+                                <span>Itogo:</span>
+                                <div>
+
+                                </div>
+                                <b>1034p</b>
+                            </li>
+                            <li className='justify-between'>
+                                <span>Nalog:</span>
+                                <div>
+
+                                </div>
+                                <b>200p</b>
+                            </li>
+                        </ul>
+                        <button className='greenButton mt-10'> Send order</button>
                     </div>
                 </div>
             </div>
