@@ -1,5 +1,7 @@
 import {Search} from "../component/Search/Search";
 import {Sneaker} from "../component/Sneaker/Sneaker";
+import {useContext} from "react";
+import {AppContext} from "../App";
 
 export function Home(props){
 
@@ -21,6 +23,8 @@ export function Home(props){
     //                     />))}
     //
 
+    //const {isItemAdded} = useContext(AppContext)
+
     return(
         <>
             <div>
@@ -40,7 +44,7 @@ export function Home(props){
             favotited={false}
             onClickAdd={props.onClickAddSnInCart}
             onClickFavorite={props.onFavorite}
-            added={props.cartItems.some(obj=>Number(obj.id) === Number(s.id))}
+            //added={isItemAdded(s.id)}
             isLoading={props.isLoading}
         />))
     : <>{props.items
@@ -54,12 +58,11 @@ export function Home(props){
                 favotited={false}
                 onClickAdd={props.onClickAddSnInCart}
                 onClickFavorite={props.onFavorite}
-                added={props.cartItems.some(obj=>Number(obj.id) === Number(s.id))}
+                //added={props.cartItems.some(obj=>Number(obj.id) === Number(s.id))}
                 isLoading={props.isLoading}
             />))}
     </>
 }
-
                     </div>
                 </div>
             </div>

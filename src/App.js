@@ -1,12 +1,18 @@
 import './App.css';
 import {Header} from "./component/Header/Header";
 import {Cart} from "./component/Cart/Cart";
-import {useEffect, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import {Route,Routes} from "react-router-dom"
 import axios from "axios";
 import {Home} from "./pages/Home";
 import {Favorites} from "./pages/Favorites";
 import {User} from "./pages/User";
+
+
+
+export const AppContext = createContext({
+
+});
 
 
 function App() {
@@ -94,8 +100,11 @@ const fakeArray=[
         axios.delete(`https://63d842d5baa0f79e09a682ec.mockapi.io/cart/${id}`)
     }
 
+    const isItemAdded=(id)=>{
+    return cartItems.some(obj=>Number(obj.id) === Number(id))
+    }
   return (
-
+<AppContext.Provider value={{cartItems,favoriteSneaker,items,isItemAdded}}>
     <div className='wrapper clear'>
         {cart && <Cart items={cartItems}
                        cart={cart}
@@ -119,13 +128,14 @@ const fakeArray=[
                            cartItems={cartItems}
                            isLoading={isLoading}
                            fakeArray={fakeArray}
+                           isItemAdded={isItemAdded}
                         />
                    }>
             </Route>
             <Route path="/favorites"
                    element={
                        <Favorites
-                       items={favoriteSneaker}
+                       // items={favoriteSneaker}
                         />
                    }>
             </Route>
@@ -139,6 +149,7 @@ const fakeArray=[
         </Routes>
 
     </div>
+</AppContext.Provider>
   );
 }
 

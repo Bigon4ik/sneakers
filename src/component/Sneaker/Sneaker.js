@@ -3,24 +3,29 @@ import heartUnlike from "../../img/heart-unlike.svg";
 import btnchoise from "../../img/btn-choise.svg";
 import btnunchoise from "../../img/btn-unchoise.svg";
 import styles from "./Sneacer.module.scss"
-import {useState} from "react";
+import {useContext, useState} from "react";
 import ContentLoader from "react-content-loader";
+import {AppContext} from "../../App";
 
 
 
 export function Sneaker(props){
 
-    const [isAdded,setIsAdded] = useState(props.added)
+    const {isItemAdded} = useContext(AppContext)
+
+    //const [isAdded,setIsAdded] = useState(isItemAdded)
     const [isFavorite,setIsFavorite] = useState(props.favotited)
 
     const onClickPlus =()=>{
         props.onClickAdd(props.id,props.names,props.price,props.imageUrl)
-        setIsAdded(!isAdded)
+        //setIsAdded(!isAdded)
     }
     const onClickFavorite =()=>{
         setIsFavorite(!isFavorite)
         props.onClickFavorite(props.id,props.names,props.price,props.imageUrl)
     }
+
+
     return(
         <div className={styles.card}>
             {props.isLoading ? <ContentLoader
@@ -53,12 +58,10 @@ export function Sneaker(props){
                 </div>
                 <div >
                 <img className={styles.plus} onClick={onClickPlus}
-                src={isAdded ? btnchoise :btnunchoise} alt="plus"/>
+                src={isItemAdded(props.id) ? btnchoise : btnunchoise} alt="plus"/>
                 </div>
                  </div>
             </>}
-
-
         </div>
 
     )

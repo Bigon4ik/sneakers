@@ -1,9 +1,14 @@
 import {Search} from "../component/Search/Search";
 import {Sneaker} from "../component/Sneaker/Sneaker";
+import {useContext} from "react";
+import {AppContext} from "../App";
 
 
 
 export function Favorites(props){
+
+    const {favoriteSneaker} = useContext(AppContext)
+
     return(
         <>
             <div>
@@ -13,10 +18,9 @@ export function Favorites(props){
                         searchValue={props.searchValue}
                         onChangeValue={props.onChangeSearchInput}
                     />
-                    {props.items.length>0?
+                    {favoriteSneaker.length>0?
                         <div className="d-flex flex-wrap">
-                            {props.items
-                                //.filter((item=>item.title.toLowerCase().includes(props.searchValue)))
+                            {favoriteSneaker
                                 .map((s,index)=>(
                                     <Sneaker
                                         key={index}
