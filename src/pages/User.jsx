@@ -1,7 +1,12 @@
 import {Search} from "../component/Search/Search";
 import {Sneaker} from "../component/Sneaker/Sneaker";
+import {useContext} from "react";
+import {AppContext} from "../App";
+import {Info} from "../component/Info/Info";
 
 export function User(props){
+    const {}=useContext(AppContext)
+
     return(
         <>
             <div>
@@ -22,7 +27,10 @@ export function User(props){
                                     />))}
 
                         </div>
-                        :"My order empty"}
+                        :<Info title={"Your order empty"}
+                               image={"../../img/orderEmpty.png"}
+                               description={"Make some order"}
+                        />}
 
                 </div>
             </div>
