@@ -123,6 +123,7 @@ const fakeArray=[
     onClickAddSnInCart,
     onChangeSearchInput,
     setSearchValue,
+    setCartItem,
     searchValue}}>
     <div className='wrapper clear'>
         {cart && <Cart onRemoveItem={onRemoveItem}/>}

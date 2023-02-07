@@ -13,12 +13,10 @@ export function Sneaker(props){
 
     const {isItemAdded,onClickAddSnInCart,onFavorite} = useContext(AppContext)
 
-    //const [isAdded,setIsAdded] = useState(isItemAdded)
     const [isFavorite,setIsFavorite] = useState(props.favotited)
 
     const onClickPlus =()=>{
        onClickAddSnInCart(props.id,props.names,props.price,props.imageUrl)
-        //setIsAdded(!isAdded)
     }
     const onClickFavorite =()=>{
         setIsFavorite(!isFavorite)

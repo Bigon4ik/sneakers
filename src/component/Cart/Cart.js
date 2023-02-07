@@ -1,13 +1,21 @@
 import btnRemove from "../../img/btn-remove.svg";
 import styles from "./Cart.module.scss";
 import {Info} from "../Info/Info";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {AppContext} from "../../App";
 
 
 
 export function Cart(props){
-    const {cartItems,setCart}= useContext(AppContext)
+
+    const {cartItems,setCart,setCartItem}= useContext(AppContext)
+
+    const [isOrder,setIsOrder] = useState(false)
+
+    const sendOrder=()=>{
+        setIsOrder(true)
+        setCartItem([])
+    }
     return(
         <>
             <div className={styles.overlay}>
@@ -17,7 +25,10 @@ export function Cart(props){
                     </h2>
                     <div className={styles.cartItems}>
                         {cartItems.length ===0
-                            ? <Info title={"Cart empty"} description={"Add some sneaker"}/>
+                            ? <Info
+                                image={isOrder ? "../../img/order.png" : '../../img/cartEmpty1.png'}
+                                title={isOrder? "Order send": "Cart empty"}
+                                description={isOrder ? "Your order number 1" : "Add some sneaker"}/>
                             : cartItems.map((i,index)=>(
                             <div key={index} className="cartItem d-flex align-center mb-20">
                                 <img
@@ -35,25 +46,21 @@ export function Cart(props){
                             </div>
                         ))}
                     </div>
-                    <div className={styles.cartTotalBlock}>
+                    {cartItems.length ===0 ? '' :<div className={styles.cartTotalBlock}>
                         <ul>
                             <li className='justify-between'>
                                 <span>Itogo:</span>
-                                <div>
-
-                                </div>
-                                <b>1034p</b>
+                                <div> </div>
+                                <b>22</b>
                             </li>
                             <li className='justify-between'>
                                 <span>Nalog:</span>
-                                <div>
-
-                                </div>
+                                <div> </div>
                                 <b>200p</b>
                             </li>
                         </ul>
-                        <button className='greenButton mt-10'> Send order</button>
-                    </div>
+                        <button onClick={sendOrder} className='greenButton mt-10'> Send order</button>
+                    </div>}
                 </div>
             </div>
 

@@ -15,13 +15,11 @@ export function Home(props){
                             key={index}
                             id={s && s.id}
                             imageUrl={s && s.imageUrl}
-                            names={s && s.title} price={s && s.price}
+                            names={s && s.title}
+                            price={s && s.price}
                             favotited={false}
                             isLoading={props.isLoading}
                         />))}
-    //
-
-
     return(
         <>
             <div>

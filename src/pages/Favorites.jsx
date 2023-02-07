@@ -6,13 +6,10 @@ import {AppContext} from "../App";
 
 
 export function Favorites(props){
-    console.log(props)
-
     const {favoriteSneaker} = useContext(AppContext)
 
     return(
         <>
-            <div>
                 <div className='content p-40'>
                     <Search serchTitle={"My favorites"}/>
                     {favoriteSneaker.length>0?
@@ -31,7 +28,6 @@ export function Favorites(props){
                         :"My favorites empty"}
 
                 </div>
-            </div>
         </>
     )
 }
