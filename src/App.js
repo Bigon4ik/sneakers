@@ -87,8 +87,17 @@ const fakeArray=[
         }
 
     }
-    const onFavorite=(id,title,price,imageUrl,)=>{
-        setFavoriteSneaker([...favoriteSneaker,{id,title,price,imageUrl}])
+    const onFavorite=async (id,title,price,imageUrl,)=>{
+        try{
+            if(favoriteSneaker.find((favObj)=>Number(favObj.id)===Number(id))){
+                setFavoriteSneaker((prev)=>prev.filter((item)=>Number(item.id)!==Number(id)))
+            }else {
+                setFavoriteSneaker([...favoriteSneaker,{id,title,price,imageUrl}])
+            }
+        }catch (error){
+            alert(`${error},problem with favorite`)
+
+        }
         //axios.post('https://63d842d5baa0f79e09a682ec.mockapi.io/cart',{id:id,name:title,price:price,imageUrl:imageUrl})
     }
 
@@ -133,11 +142,7 @@ const fakeArray=[
                    }>
             </Route>
             <Route path="/favorites"
-                   element={
-                       <Favorites
-                       // items={favoriteSneaker}
-                        />
-                   }>
+                   element={<Favorites/>}>
             </Route>
             <Route path="/user"
                    element={

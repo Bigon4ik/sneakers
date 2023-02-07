@@ -6,6 +6,7 @@ import {AppContext} from "../App";
 
 
 export function Favorites(props){
+    console.log(props)
 
     const {favoriteSneaker} = useContext(AppContext)
 
@@ -15,8 +16,6 @@ export function Favorites(props){
                 <div className='content p-40'>
                     <Search
                         serchTitle={"My favorites"}
-                        searchValue={props.searchValue}
-                        onChangeValue={props.onChangeSearchInput}
                     />
                     {favoriteSneaker.length>0?
                         <div className="d-flex flex-wrap">
@@ -28,8 +27,6 @@ export function Favorites(props){
                                         favotited={true}
                                         imageUrl={s.imageUrl}
                                         names={s.title} price={s.price}
-                                        //onClickAdd={props.onClickAddSnInCart}
-                                        //onClickFavorite={props.onFavorite}
                                     />))}
 
                         </div>
