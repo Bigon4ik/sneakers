@@ -4,12 +4,12 @@ import {useContext} from "react";
 import {AppContext} from "../App";
 
 export function Home(props){
-    const {items,searchValue} = useContext(AppContext)
+    const {isLoading,items,searchValue} = useContext(AppContext)
 
     const filteredItems= items.filter((item)=>
     item.title.toLowerCase().includes(searchValue))
     const renderItems =()=>{
-        return (props.isLoading ? [...Array(8)]
+        return (isLoading ? [...Array(8)]
                 : filteredItems).map((s,index)=>(
                         <Sneaker
                             key={index}
@@ -18,7 +18,6 @@ export function Home(props){
                             names={s && s.title}
                             price={s && s.price}
                             favotited={false}
-                            isLoading={props.isLoading}
                         />))}
     return(
         <>
@@ -27,7 +26,6 @@ export function Home(props){
                     <Search serchTitle={"All sneakers"}/>
                     <div className="d-flex flex-wrap">
                         {renderItems()}
-
                     </div>
                 </div>
             </div>

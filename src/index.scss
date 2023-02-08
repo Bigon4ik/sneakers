@@ -171,4 +171,7 @@ h2{
 .greenButton:active{
   background: darken(#9dd588, 5%);
 }
+.greenButton.disabled{
+  background: #bebebe;
+}
 

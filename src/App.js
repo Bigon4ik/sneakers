@@ -10,10 +10,7 @@ import {User} from "./pages/User";
 
 
 
-export const AppContext = createContext({
-
-});
-
+export const AppContext = createContext({});
 
 function App() {
 
@@ -23,11 +20,8 @@ function App() {
     const [favoriteSneaker,setFavoriteSneaker]=useState([])
     const [order,setOrder] = useState([])
 
-
     const [items,setItems]=useState([])
     const [searchValue,setSearchValue]=useState("")
-
-
 
     useEffect(()=>{
         async function fetchData() {
@@ -88,45 +82,33 @@ function App() {
     cartItems,
     favoriteSneaker,
     items,
-    isItemAdded,
     setCart,
-    onFavorite,
-    onClickAddSnInCart,
-    onChangeSearchInput,
     setSearchValue,
     setCartItem,
     order,
     setOrder,
-    searchValue}}>
+    searchValue,
+    isLoading,
+    isItemAdded,
+    onFavorite,
+    onClickAddSnInCart,
+    onChangeSearchInput,
+    onRemoveItem}}>
     <div className='wrapper clear'>
-        {cart && <Cart onRemoveItem={onRemoveItem}/>}
+        {cart && <Cart/>}
         <Header/>
         <Routes>
-            <Route path="/" exact
-                   element={
-                       <Home
-                           setSerchValue={setSearchValue}
-                           onChangeSearchInput={onChangeSearchInput}
-                           isLoading={isLoading}
-                           //isItemAdded={isItemAdded}
-                        />
-                   }>
+            <Route path="/" exact element={<Home/>}>
             </Route>
-            <Route path="/favorites"
-                   element={<Favorites/>}>
+            <Route path="/favorites" element={<Favorites/>}>
             </Route>
-            <Route path="/user"
-                   element={
-                       <User/>
-                   }>
+            <Route path="/user" element={<User/>}>
             </Route>
         </Routes>
-
     </div>
 </AppContext.Provider>
   );
 }
-
 export default App;
 
 

@@ -11,7 +11,7 @@ import {AppContext} from "../../App";
 
 export function Sneaker(props){
 
-    const {isItemAdded,onClickAddSnInCart,onFavorite} = useContext(AppContext)
+    const {isLoading,isItemAdded,onClickAddSnInCart,onFavorite} = useContext(AppContext)
 
     const [isFavorite,setIsFavorite] = useState(props.favotited)
 
@@ -26,7 +26,7 @@ export function Sneaker(props){
 
     return(
         <div className={styles.card}>
-            {props.isLoading ? <ContentLoader
+            {isLoading ? <ContentLoader
                 speed={2}
                 width={150}
                 height={255}

@@ -6,13 +6,12 @@ import {Info} from "../component/Info/Info";
 
 export function User(){
     const {order}=useContext(AppContext)
-    console.log(order)
     return(
         <>
             <div>
                 <div className='content p-40'>
                     <Search serchTitle={"My order"}/>
-                    {order?
+                    {order.length>0?
                         <div className="d-flex flex-wrap">
                             {order
                                 .map((s,index)=>(

@@ -8,9 +8,9 @@ import axios from "axios";
 const delay=(ms) => new Promise((resolve) => setTimeout(resolve,ms))
 
 
-export function Cart(props){
+export function Cart(){
 
-    const {order,setOrder,cartItems,setCart,setCartItem}= useContext(AppContext)
+    const {onRemoveItem,order,setOrder,cartItems,setCart,setCartItem}= useContext(AppContext)
 
     const [isOrder,setIsOrder] = useState(false)
     const [isLoadingCart,setIsLoadingCart] = useState(false)
@@ -20,23 +20,17 @@ export function Cart(props){
         try {
             setIsLoadingCart(true)
             setIsOrder(true)
-            // console.log(cartItems)
             setCartItem([])
             for (let i = 0; i < cartItems.length; i++) {
                 const item = cartItems[i];
                 await axios.delete("https://63d842d5baa0f79e09a682ec.mockapi.io/cart/" + item.id)
                 await delay(100)
             }
-
         } catch (error) {
             alert("problem with order")
         }
         setIsLoadingCart(false)
     }
-    // console.log(cartItems)
-    console.log(order)
-
-
     return(
         <>
             <div className={styles.overlay}>
@@ -60,7 +54,7 @@ export function Cart(props){
                                     <p className='mb-5'>{i.name}</p>
                                     <b>{i.price}p</b>
                                 </div>
-                                <img onClick={()=>{props.onRemoveItem(i.id)}}
+                                <img onClick={()=>{onRemoveItem(i.id)}}
                                      className={styles.removeBtn}
                                      src={btnRemove} alt="Remove"
                                 />
@@ -80,7 +74,7 @@ export function Cart(props){
                                 <b>200p</b>
                             </li>
                         </ul>
-                        <button onClick={sendOrder} className='greenButton mt-10'> Send order</button>
+                        <button disabled={isLoadingCart} onClick={sendOrder} className='greenButton mt-10'> Send order</button>
                     </div>}
                 </div>
             </div>
