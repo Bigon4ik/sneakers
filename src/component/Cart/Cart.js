@@ -3,19 +3,40 @@ import styles from "./Cart.module.scss";
 import {Info} from "../Info/Info";
 import {useContext, useState} from "react";
 import {AppContext} from "../../App";
+import axios from "axios";
 
+const delay=(ms) => new Promise((resolve) => setTimeout(resolve,ms))
 
 
 export function Cart(props){
 
-    const {cartItems,setCart,setCartItem}= useContext(AppContext)
+    const {order,setOrder,cartItems,setCart,setCartItem}= useContext(AppContext)
 
     const [isOrder,setIsOrder] = useState(false)
+    const [isLoadingCart,setIsLoadingCart] = useState(false)
 
-    const sendOrder=()=>{
-        setIsOrder(true)
-        setCartItem([])
+    const sendOrder = async () => {
+        setOrder(cartItems)
+        try {
+            setIsLoadingCart(true)
+            setIsOrder(true)
+            // console.log(cartItems)
+            setCartItem([])
+            for (let i = 0; i < cartItems.length; i++) {
+                const item = cartItems[i];
+                await axios.delete("https://63d842d5baa0f79e09a682ec.mockapi.io/cart/" + item.id)
+                await delay(100)
+            }
+
+        } catch (error) {
+            alert("problem with order")
+        }
+        setIsLoadingCart(false)
     }
+    // console.log(cartItems)
+    console.log(order)
+
+
     return(
         <>
             <div className={styles.overlay}>

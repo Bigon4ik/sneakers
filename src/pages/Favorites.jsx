@@ -2,6 +2,7 @@ import {Search} from "../component/Search/Search";
 import {Sneaker} from "../component/Sneaker/Sneaker";
 import {useContext} from "react";
 import {AppContext} from "../App";
+import {Info} from "../component/Info/Info";
 
 
 
@@ -25,7 +26,10 @@ export function Favorites(props){
                                     />))}
 
                         </div>
-                        :"My favorites empty"}
+                        :<Info title={"Your favorites empty"}
+                               image={"../../img/orderEmpty.png"}
+                               description={"Choose some sneaker"}
+                        />}
 
                 </div>
         </>

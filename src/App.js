@@ -17,41 +17,12 @@ export const AppContext = createContext({
 
 function App() {
 
-const fakeArray=[
-    {
-    "title":"Мужские Кроссовки Nike Blazer Mid Suede",
-    "price":250,
-    "imageUrl":"{sneaker1}"
-    },
-    {
-        "title":"Мужские Кроссовки Nike Air Max 270",
-        "price":290,
-        "imageUrl":"{sneaker2}"
-    },
-    {
-        "title":"Мужские Кроссовки Nike Blazer Mid Suede",
-        "price":310,
-        "imageUrl":"{sneaker3}"
-    },
-    {
-        "title":"Кроссовки Puma X Aka Boku Future Rider",
-        "price":255,
-        "imageUrl":"{sneaker4}"
-    },
-    {
-        "title":"Мужские Кроссовки Under Armour Curry 8",
-        "price":235,
-        "imageUrl":"{sneaker5}"
-    },
-    {
-        "title":"Мужские Кроссовки Nike LeBron XVIII",
-        "price":290,
-        "imageUrl":"{sneaker6}"
-    }]
     const [cart,setCart]=useState(false)
     const [isLoading,setIsLoading]=useState(true)
     const [cartItems,setCartItem]=useState([])
     const [favoriteSneaker,setFavoriteSneaker]=useState([])
+    const [order,setOrder] = useState([])
+
 
     const [items,setItems]=useState([])
     const [searchValue,setSearchValue]=useState("")
@@ -124,6 +95,8 @@ const fakeArray=[
     onChangeSearchInput,
     setSearchValue,
     setCartItem,
+    order,
+    setOrder,
     searchValue}}>
     <div className='wrapper clear'>
         {cart && <Cart onRemoveItem={onRemoveItem}/>}
@@ -135,7 +108,6 @@ const fakeArray=[
                            setSerchValue={setSearchValue}
                            onChangeSearchInput={onChangeSearchInput}
                            isLoading={isLoading}
-                           fakeArray={fakeArray}
                            //isItemAdded={isItemAdded}
                         />
                    }>
@@ -145,9 +117,7 @@ const fakeArray=[
             </Route>
             <Route path="/user"
                    element={
-                       <User
-                       items={"one"}
-                       />
+                       <User/>
                    }>
             </Route>
         </Routes>

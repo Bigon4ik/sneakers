@@ -4,26 +4,25 @@ import {useContext} from "react";
 import {AppContext} from "../App";
 import {Info} from "../component/Info/Info";
 
-export function User(props){
-    const {}=useContext(AppContext)
-
+export function User(){
+    const {order}=useContext(AppContext)
+    console.log(order)
     return(
         <>
             <div>
                 <div className='content p-40'>
                     <Search serchTitle={"My order"}/>
-                    {props.items>0?
+                    {order?
                         <div className="d-flex flex-wrap">
-
-                            {props.items
-                                //.filter((item=>item.title.toLowerCase().includes(props.searchValue)))
+                            {order
                                 .map((s,index)=>(
                                     <Sneaker
                                         key={index}
                                         id={s.id}
-                                        favotited={true}
                                         imageUrl={s.imageUrl}
-                                        names={s.title} price={s.price}
+                                        names={ s.name}
+                                        price={s.price}
+                                        favotited={false}
                                     />))}
 
                         </div>
