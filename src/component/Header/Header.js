@@ -8,7 +8,10 @@ import {AppContext} from "../../App";
 
 
 export function Header(){
-    const {setCart} = useContext(AppContext)
+    const {setCart,cartItems} = useContext(AppContext)
+
+    const totalPrice = cartItems.reduce((sum,obj)=>obj.price + sum , 0)
+
     return(
         <>
             <header className='d-flex justify-between align-center p-40'>
@@ -25,7 +28,7 @@ export function Header(){
                     <ul className='d-flex'>
                         <li className='mr-30 cu-p' onClick={()=>{setCart(true)}}>
                             <img  width={18} height={18} src={car} alt='cart'/>
-                            <span>{0} p</span>
+                            <span>{totalPrice} p</span>
                         </li>
                         <Link to={"favorites"}>
                             <li className='cu-p'>

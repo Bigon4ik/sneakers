@@ -31,6 +31,8 @@ export function Cart(){
         }
         setIsLoadingCart(false)
     }
+    const totalPrice = cartItems.reduce((sum,obj)=>obj.price + sum , 0)
+
     return(
         <>
             <div className={styles.overlay}>
@@ -64,14 +66,14 @@ export function Cart(){
                     {cartItems.length ===0 ? '' :<div className={styles.cartTotalBlock}>
                         <ul>
                             <li className='justify-between'>
-                                <span>Itogo:</span>
+                                <span>Total:</span>
                                 <div> </div>
-                                <b>22</b>
+                                <b>{totalPrice}</b>
                             </li>
                             <li className='justify-between'>
-                                <span>Nalog:</span>
+                                <span>Nalog 5%:</span>
                                 <div> </div>
-                                <b>200p</b>
+                                <b>{totalPrice/100 *5}p</b>
                             </li>
                         </ul>
                         <button disabled={isLoadingCart} onClick={sendOrder} className='greenButton mt-10'> Send order</button>

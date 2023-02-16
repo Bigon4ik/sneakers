@@ -23,7 +23,6 @@ export function Sneaker(props){
         onFavorite(props.id,props.names,props.price,props.imageUrl)
     }
 
-
     return(
         <div className={styles.card}>
             {isLoading ? <ContentLoader
@@ -44,7 +43,7 @@ export function Sneaker(props){
                 :
                 <>
                     <div className={styles.favorite}>
-                <img onClick={onClickFavorite} src={isFavorite ? heartLike :heartUnlike} alt="Unliked"/>
+                        {props.order || <img onClick={onClickFavorite} src={isFavorite ? heartLike : heartUnlike} alt="Unliked"/>}
             </div>
                 <img
                 width={133} height={112} src={props.imageUrl} alt="sneaker1"/>
@@ -55,8 +54,8 @@ export function Sneaker(props){
                 <b>{props.price} BYN</b>
                 </div>
                 <div >
-                <img className={styles.plus} onClick={onClickPlus}
-                src={isItemAdded(props.id) ? btnchoise : btnunchoise} alt="plus"/>
+                    {props.order || <img className={styles.plus} onClick={onClickPlus}
+                          src={isItemAdded(props.id) ? btnchoise : btnunchoise} alt="plus"/>}
                 </div>
                  </div>
             </>}

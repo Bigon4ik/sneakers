@@ -25,8 +25,8 @@ function App() {
 
     useEffect(()=>{
         async function fetchData() {
-            const cartResponse= await axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/cart')
-            const itemsResponse= await axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/items')
+            const cartResponse = await axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/cart')
+            const itemsResponse = await axios.get('https://63d842d5baa0f79e09a682ec.mockapi.io/items')
 
             setIsLoading(false)
 

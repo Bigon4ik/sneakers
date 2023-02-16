@@ -22,6 +22,7 @@ export function User(){
                                         names={ s.name}
                                         price={s.price}
                                         favotited={false}
+                                        order={" "}
                                     />))}
 
                         </div>

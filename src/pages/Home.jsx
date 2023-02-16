@@ -18,6 +18,7 @@ export function Home(props){
                             names={s && s.title}
                             price={s && s.price}
                             favotited={false}
+
                         />))}
     return(
         <>
